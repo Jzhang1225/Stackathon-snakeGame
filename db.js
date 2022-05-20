@@ -10,6 +10,9 @@ const Score = database.define("score", {
 
 const syncAndSeed = async () => {
   await database.sync({ force: true });
+  await Promise.all(
+    [7000, 4500, 2000, 300, 40, 1050].map((score) => Score.create({ score }))
+  );
   console.log("connected to db");
 };
 
