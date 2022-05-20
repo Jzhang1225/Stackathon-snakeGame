@@ -17,7 +17,7 @@ getScores();
 
 button.addEventListener("click", async () => {
   clearInterval(interval);
-  interval = setInterval(moveSnake, 150);
+  interval = setInterval(moveSnake, 100);
   score = 0;
   currentPosition = { x, y };
   snakeBody = [];
@@ -35,7 +35,7 @@ button.addEventListener("click", async () => {
 ctx.fillStyle = "rgb(0,175,0)";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-let interval = setInterval(moveSnake, 150);
+let interval = setInterval(moveSnake, 100);
 
 let x = 60,
   y = 60,
