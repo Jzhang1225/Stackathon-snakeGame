@@ -2,13 +2,23 @@
 <html>
 <head>
     <script src="/dist/main.js" defer></script>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
+    <div class="header" style = 
+    "display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 900px;">
         <h1 id = 'score'></h1>
         <button id = 'tryAgain'> Try Again</button>
     </div>
-    <canvas id="canvas" width="900" height="750"></canvas>
+    <div style = 
+    "display: flex;">>
+        <canvas id="canvas" width="900" height="750"></canvas>
+        <div>
+            <h3>Top Scores</h3>
+            <ul id="rankings" style = "list-style-type: none;"></ul>
+        </div>
+    </div>
 </body>
 </html>
