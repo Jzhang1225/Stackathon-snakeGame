@@ -2,9 +2,10 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const scoreboard = document.querySelector("#score");
 const button = document.querySelector("#tryAgain");
+
 button.addEventListener("click", () => {
   clearInterval(interval);
-  interval = setInterval(moveSnake, 100);
+  interval = setInterval(moveSnake, 150);
   score = 0;
   currentPosition = { x, y };
   snakeBody = [];
@@ -13,20 +14,19 @@ button.addEventListener("click", () => {
   foodCoordinate = [];
   inGame = true;
   scoreboard.innerHTML = `Your score is ${score}`;
-  ctx.fillStyle = "rgb(0,0,0)";
+  ctx.fillStyle = "rgb(0,175,0)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawSnake();
   makeFood();
 });
 
+ctx.fillStyle = "rgb(0,175,0)";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-let interval = setInterval(moveSnake, 100);
+let interval = setInterval(moveSnake, 150);
 
 let x = 60,
   y = 60,
-  width = 30,
-  height = 30,
   score = 0,
   currentPosition = { x, y },
   gridSize = 30,
@@ -34,7 +34,12 @@ let x = 60,
   snakeBody = [],
   snakeLength = 3,
   foodCoordinate = [],
-  inGame = true;
+  inGame = true,
+  snake = new Image(),
+  food = new Image();
+
+snake.src = "../assets/prof.png";
+food.src = "../assets/stanley.jpeg";
 
 scoreboard.innerHTML = `Your score is ${score}`;
 
@@ -53,13 +58,11 @@ function drawSnake() {
       gameOver();
     }
   }
-
-  ctx.fillStyle = "rgb(200,0,0)";
   snakeBody.push([currentPosition["x"], currentPosition["y"]]);
-  ctx.fillRect(currentPosition["x"], currentPosition["y"], gridSize, gridSize);
+  ctx.drawImage(snake, currentPosition["x"], currentPosition["y"]);
   if (snakeBody.length > snakeLength) {
     const itemToRemove = snakeBody.shift();
-    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fillStyle = "rgb(0,175,0)";
     ctx.fillRect(itemToRemove[0], itemToRemove[1], gridSize, gridSize);
   }
   if (
@@ -72,7 +75,6 @@ function drawSnake() {
     scoreboard.innerHTML = `Your score is ${score}`;
   }
 }
-drawSnake();
 
 function makeFood() {
   foodCoordinate = [
@@ -88,12 +90,8 @@ function makeFood() {
       makeFood();
     }
   }
-
-  ctx.fillStyle = "rgb(10,100,0)";
-  ctx.fillRect(foodCoordinate[0], foodCoordinate[1], gridSize, gridSize);
+  ctx.drawImage(food, foodCoordinate[0], foodCoordinate[1]);
 }
-
-makeFood();
 
 function moveUp() {
   if (currentPosition["y"] - gridSize >= 0) {
@@ -118,6 +116,7 @@ function moveLeft() {
   } else gameOver();
 }
 function moveRight() {
+  if (!foodCoordinate.length) makeFood();
   if (currentPosition["x"] + gridSize < canvas.width) {
     direction = "right";
     currentPosition["x"] = currentPosition["x"] + gridSize;
