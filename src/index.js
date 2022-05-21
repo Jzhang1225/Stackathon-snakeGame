@@ -159,6 +159,18 @@ window.addEventListener("keydown", (event) => {
       case "d":
         if (direction !== "left") moveRight();
         break;
+      case "ArrowUp":
+        if (direction !== "down") moveUp();
+        break;
+      case "ArrowDown":
+        if (direction !== "up") moveDown();
+        break;
+      case "ArrowLeft":
+        if (direction !== "right") moveLeft();
+        break;
+      case "ArrowRight":
+        if (direction !== "left") moveRight();
+        break;
       default:
         break;
     }
