@@ -26,13 +26,13 @@ button.addEventListener("click", async () => {
   foodCoordinate = [];
   inGame = true;
   scoreboard.innerHTML = `Your score is ${score}`;
-  ctx.fillStyle = "rgb(0,175,0)";
+  ctx.fillStyle = "rgb(0, 180, 255)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawSnake();
   makeFood();
 });
 
-ctx.fillStyle = "rgb(0,175,0)";
+ctx.fillStyle = "rgb(0, 180, 255)";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 let interval = setInterval(moveSnake, 100);
@@ -81,7 +81,7 @@ function drawSnake() {
   ctx.drawImage(snake, currentPosition["x"], currentPosition["y"]);
   if (snakeBody.length > snakeLength) {
     const itemToRemove = snakeBody.shift();
-    ctx.fillStyle = "rgb(0,175,0)";
+    ctx.fillStyle = "rgb(0, 180, 255)";
     ctx.fillRect(itemToRemove[0], itemToRemove[1], gridSize, gridSize);
   }
   if (
