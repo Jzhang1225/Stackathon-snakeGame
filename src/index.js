@@ -12,7 +12,6 @@ async function getScores() {
   scores.map((score, idx) => {
     rankings.innerHTML += `<li> ${idx + 1}) ${score.score}</li>`;
   });
-  console.log("test");
 }
 getScores();
 
