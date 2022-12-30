@@ -1,19 +1,7 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-const scoreboard = document.querySelector("#score");
+
 const button = document.querySelector("#tryAgain");
-const rankings = document.querySelector("#rankings");
-
-import axios from "axios";
-
-async function getScores() {
-  const scores = (await axios.get("/scores")).data;
-  rankings.innerHTML = "";
-  scores.map((score, idx) => {
-    rankings.innerHTML += `<li> ${idx + 1}) ${score.score}</li>`;
-  });
-}
-getScores();
 
 button.addEventListener("click", async () => {
   clearInterval(interval);
@@ -59,13 +47,6 @@ async function gameOver() {
   clearInterval(interval);
   inGame = false;
   scoreboard.innerHTML = `Game over! Your score was ${score}. Try again?`;
-  await axios.post("/scores", { score });
-  const scores = (await axios.get("/scores")).data;
-
-  rankings.innerHTML = "";
-  scores.map((score, idx) => {
-    rankings.innerHTML += `<li> ${idx + 1}) ${score.score}</li>`;
-  });
 }
 
 function drawSnake() {
