@@ -1,6 +1,6 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-
+const scoreboard = document.querySelector("#score");
 const button = document.querySelector("#tryAgain");
 
 button.addEventListener("click", async () => {
